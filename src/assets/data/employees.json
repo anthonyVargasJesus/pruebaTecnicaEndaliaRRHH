@@ -1,0 +1,106 @@
+[
+  
+    {
+        "id": 10,
+        "name": "Ignacio",
+        "firstName": "ARIZA",
+        "lastName" : "HIDALGO",
+        "job": "Auditor de Medioambiente",
+        "phone": "28322925",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-17"
+    },
+    {
+        "id": 2,
+        "name": "Verónica",
+        "firstName": "AGUIRRE",
+        "lastName" : "LEÓN",
+        "job": "Operador Sección 1",
+        "phone": "6781696",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-2"
+    },
+
+    {
+        "id": 4,
+        "name": "Carlos",
+        "firstName": "ALCALÁ",
+        "lastName" : "HERRERA",
+        "job": "Auditor de MedioAmbiente / Encargado de Producción",
+        "phone": "61744290",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-4"
+    },
+    {
+        "id": 1,
+        "name": "Ignacio",
+        "firstName": "ABAD",
+        "lastName" : "JIMÉNEZ",
+        "job": "Responsable de Desarrollo de RRHH",
+        "phone": "61744290",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-1"
+    },
+    {
+        "id": 5,
+        "name": "Ángela",
+        "firstName": "ALCALÁ",
+        "lastName" : "ORDONEZ",
+        "job": "Administrativo/a",
+        "phone": "28322925",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-5"
+    },
+    {
+        "id": 6,
+        "name": "Laura",
+        "firstName": "ALVAREZ",
+        "lastName" : "PINEDA",
+        "job": "Auditor de Calidad",
+        "phone": "28322925",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-6"
+    },
+    {
+        "id": 7,
+        "name": "Pedro",
+        "firstName": "ANTÓN",
+        "lastName" : "TERUEL",
+        "job": "Operario Sección 2 Turno Tarde",
+        "phone": "28322925",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-19"
+    },
+    {
+        "id": 8,
+        "name": "Vicente",
+        "firstName": "APARICIO",
+        "lastName" : "HERRERO",
+        "job": "Coordinador de Ventas Zona Norte",
+        "phone": "28322925",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-8"
+    },
+    {
+        "id": 3,
+        "name": "Miguel Ángel",
+        "firstName": "AGUIRRE",
+        "lastName" : "RIVERA",
+        "job": "Dirección Comercial",
+        "phone": "34871575",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-11"
+    },
+    {
+        "id": 9,
+        "name": "Juan Pedro",
+        "firstName": "ARIZA",
+        "lastName" : "FRANCO",
+        "job": "Responsable de Proyecto",
+        "phone": "28322925",
+        "email": "prueba@endalia.com",
+        "image": "avatar-s-9"
+    }
+
+
+]
