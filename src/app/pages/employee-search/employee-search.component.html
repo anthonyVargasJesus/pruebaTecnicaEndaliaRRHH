@@ -3,7 +3,7 @@
 <br>
 <div class="row">
     <div class="col-6">
-        <input #input name="searchValue" (keypress)="onKeypressEvent($event)" name="search" type="search"
+        <input #input name="searchValue" (keyup)="searchEmployees(input.value)" name="search" type="search"
             placeholder="Buscar..." class="form-control">
     </div>
 </div>

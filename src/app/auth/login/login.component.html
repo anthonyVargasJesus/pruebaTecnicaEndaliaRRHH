@@ -9,48 +9,80 @@
                 <div id="login-box" class="col-md-12">
 
                  
-                    <form  ngNativeValidate #f="ngForm" (ngSubmit)="save(f)"
-                    class="form form-horizontal ng-untouched ng-pristine ng-valid mt-3" autocomplete="off" style="margin: 70px;">
+                  <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+                  class="form form-horizontal ng-untouched ng-pristine ng-valid mt-3" autocomplete="off" style="margin: 70px;">
+                   
                      
-                       
-                        <img  src="assets/images/endalia-logo-blue@2x.png.webp"  alt="brand-logo"  style="height:10%;width: 40%;  display: block;margin-left: auto;
-                        margin-right: auto;margin-top:70px;"/>
+                      <img  src="assets/images/endalia-logo-blue@2x.png.webp"  alt="brand-logo"  style="height:10%;width: 40%;  display: block;margin-left: auto;
+                      margin-right: auto;margin-top:70px;"/>
+                   
+                   <h5 style="margin-top: 45px;">Bienvenido/a</h5>
+                   <p class="text-secondary">Ingresa tus credenciales para acceder</p>
                      
-                     <h5 style="margin-top: 45px;">Bienvenido/a</h5>
-                     <p class="text-secondary">Ingresa tus credenciales para acceder</p>
-                       
-                        <div class="form-group row" style="margin-top: 30px;">
-                          <label class="col-sm-3 col-form-label text-secondary">Usuario</label>
-                          <div class="col-sm-9">
-                            <input type="email" [(ngModel)]="user.email" name="email" required class="form-control" placeholder="Correo electrónico">
+                      <div class="form-group row" style="margin-top: 30px;">
+                        <label class="col-sm-3 col-form-label text-secondary">Usuario</label>
+                        <div class="col-sm-9">
                          
-                        
+                          <input
+                          type="text"
+                          formControlName="email"
+                          class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                          placeholder="admin@demo.com"
+                          aria-describedby="login-email"
+                          autofocus=""
+                          tabindex="1"
+                        />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">El correo electrónico es requerido</div>
+                          <div *ngIf="f.email.errors.email">El correo debe ser una dirección de correo electrónico válida</div>
                         </div>
-                        </div>
-                       
-                        <div class="form-group row" style="margin-top: 10px;">
-                          <label  class="col-sm-3 col-form-label text-secondary">Contraseña</label>
-                          <div class="col-sm-9">
-                            <input type="password" [(ngModel)]="user.password" name="password" required class="form-control" placeholder="Contraseña">
+
+                      </div>
+                      </div>
+                     
+                      <div class="form-group row" style="margin-top: 10px;">
+                        <label  class="col-sm-3 col-form-label text-secondary">Contraseña</label>
+                        <div class="col-sm-9">
+                         
+                          <div class="input-group input-group-merge form-password-toggle">
+                            <input
+                              [type]="passwordTextType ? 'text' : 'password'"
+                              formControlName="password"
+                              class="form-control form-control-merge"
+                              [ngClass]="{ 'is-invalid error': submitted && f.password.errors }"
+                              placeholder="············"
+                              aria-describedby="login-password"
+                              tabindex="2"
+                            />
+    
+                          </div>
+                          <div
+                            *ngIf="submitted && f.password.errors"
+                            class="invalid-feedback"
+                            [ngClass]="{ 'd-block': submitted && f.password.errors }"
+                          >
+                            <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
                           </div>
                         </div>
-                     
-                     <br>
-                     <br>
-                        <div class="form-group row">
-                          <div class="col-md-12">
-                          
-                            <div class="d-grid gap-2">
-                                <button *ngIf="!_loginService.loading" type="submit" class="btn btn-primary text-center" style="background-color: #1352A1;height: 40px;">Acceder</button>
-                                <button *ngIf="_loginService.loading" type="button" disabled="" rippleeffect=""
-                                class="btn btn-outline-primary waves-effect mr-1" style="height: 40px;">
-                                <span role="status" aria-hidden="true" class="spinner-border spinner-border-sm"></span>
-                                <span class="ml-25 align-middle" style="margin-left: 5px;">Autenticando...</span>
-                              </button>
-                              </div>
-                        </div>
-                        </div>
-                      </form>
+                      </div>
+                   
+                   <br>
+                   <br>
+                      <div class="form-group row">
+                        <div class="col-md-12">
+                        
+                          <div class="d-grid gap-2">
+                              <button *ngIf="!_loginService.loading" type="submit" class="btn btn-primary text-center" style="background-color: #1352A1;height: 40px;">Acceder</button>
+                              <button *ngIf="_loginService.loading" type="button" disabled="" rippleeffect=""
+                              class="btn btn-outline-primary waves-effect mr-1" style="height: 40px;">
+                              <span role="status" aria-hidden="true" class="spinner-border spinner-border-sm"></span>
+                              <span class="ml-25 align-middle" style="margin-left: 5px;">Autenticando...</span>
+                            </button>
+                            </div>
+                      </div>
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>

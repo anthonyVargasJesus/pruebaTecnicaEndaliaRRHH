@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventManager } from '@angular/platform-browser';
 import { TIME_TO_WAIT } from 'src/app/config/config';
 import { ErrorManager } from 'src/app/errors/error-manager';
 import { Employee } from 'src/app/models/employee';
@@ -15,19 +16,21 @@ export class EmployeeSearchComponent implements OnInit {
   employees: Employee[] = [];
   loading: boolean = false;
 
-  constructor(private _employeeService: EmployeeService) { }
+  constructor(private _employeeService: EmployeeService, private eventManager: EventManager) {
+
+  }
 
 
   ngOnInit(): void {
     this.getEmployees();
   }
 
-  getEmployees() {
+  //obtener toda la lista de empleados al inicio de la página
+  async getEmployees() {
     this.loading = true;
+    await new Promise(f => setTimeout(f, TIME_TO_WAIT));
     this._employeeService.getJSON()
-      .subscribe(async (res: any) => {
-
-        await new Promise(f => setTimeout(f, TIME_TO_WAIT));
+      .subscribe((res: any) => {
         this.employees = res;
         this.sortEmployees();
         this.loading = false;
@@ -37,15 +40,13 @@ export class EmployeeSearchComponent implements OnInit {
       });
   }
 
+  //ordenando a los empleados
   sortEmployees() {
     let sortedEmployees = this.employees.sort((a, b) => (a.firstName! < b.firstName!) ? -1 : 1);
     this.employees = sortedEmployees;
   }
 
-  onKeypressEvent(event: any) {
-    this.searchEmployees(event.target.value);
-  }
-
+  //obteniendo la data sel servicio y posteriormente filtrando
   searchEmployees(searchText: string) {
     this.loading = true;
     this._employeeService.getJSON()
@@ -58,18 +59,18 @@ export class EmployeeSearchComponent implements OnInit {
       });
   }
 
-
+  //filtrando el termino de búsqueda en cada campo del arreglo de empleados
   filterEmployeesInList(res: Employee[], searchText: string) {
 
     let searchedEmployees: Employee[] = [];
     res.forEach(employee => {
 
-      if (employee.name?.toUpperCase().includes(searchText.toUpperCase()) 
-      || employee.firstName?.toUpperCase().includes(searchText.toUpperCase())
-      || employee.lastName?.toUpperCase().includes(searchText.toUpperCase())
-      || employee.job?.toUpperCase().includes(searchText.toUpperCase())
-      || employee.phone?.toUpperCase().includes(searchText.toUpperCase())
-      || employee.email?.toUpperCase().includes(searchText.toUpperCase()))
+      if (employee.name?.toUpperCase().includes(searchText.toUpperCase())
+        || employee.firstName?.toUpperCase().includes(searchText.toUpperCase())
+        || employee.lastName?.toUpperCase().includes(searchText.toUpperCase())
+        || employee.job?.toUpperCase().includes(searchText.toUpperCase())
+        || employee.phone?.toUpperCase().includes(searchText.toUpperCase())
+        || employee.email?.toUpperCase().includes(searchText.toUpperCase()))
         searchedEmployees.push(employee);
 
     });
@@ -77,5 +78,6 @@ export class EmployeeSearchComponent implements OnInit {
     this.employees = [];
     this.employees = searchedEmployees;
   }
+
 
 }

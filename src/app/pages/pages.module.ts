@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from '../pipes/pipes.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PipesModule } from '../pipes/pipes.module';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     SharedModule,
     PipesModule
   ],

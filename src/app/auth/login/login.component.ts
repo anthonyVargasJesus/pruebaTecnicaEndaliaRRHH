@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -10,26 +10,46 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  user: User = new User();
   loading: boolean = false;
+  public loginForm: FormGroup;
+  public submitted = false;
+  public passwordTextType: boolean = false;
 
-  constructor(public _loginService: LoginService) { }
+  constructor(public _loginService: LoginService,
+    private _formBuilder: FormBuilder,) {
+    this.loginForm = this._formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
 
   ngOnInit(): void {
 
+
+
   }
 
-  save(f: NgForm) {
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  onSubmit() {
+    
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
 
     this.loading = true;
 
-    // if (!this.isValidForm(f))
-    //   return;
+    let user = new User();
+    user.email = this.loginForm.value.email;
+    user.password = this.loginForm.value.password;
 
-    //this._loginService.login(this.user);
-    this._loginService.login(this.user)
-    
-    
+    this._loginService.login(user);
+
   }
 
 }
